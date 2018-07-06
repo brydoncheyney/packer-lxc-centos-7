@@ -1,0 +1,29 @@
+{
+  "builders": [
+    {
+      "type": "lxc",
+      "name": "lxc-centos-7-x64",
+      "config_file": "lxc/config",
+      "template_name": "centos",
+      "template_parameters": [
+        "-R", "7",
+        "-a", "x86_64"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/base.sh",
+        "scripts/user.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "builds/lxc-centos-7-server.box",
+      "type": "vagrant"
+    }
+  ]
+}
