@@ -3,7 +3,10 @@
     {
       "type": "lxc",
       "name": "lxc-centos-7-x64",
-      "config_file": "lxc/config",
+      "config_file": "/packer/lxc/config",
+      "create_options": [
+        "-f", "/packer/lxc/centos-7.conf"
+      ],
       "template_name": "centos",
       "template_parameters": [
         "-R", "7",
@@ -15,14 +18,14 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/base.sh",
-        "scripts/user.sh"
+        "/packer/scripts/base.sh",
+        "/packer/scripts/user.sh"
       ]
     }
   ],
   "post-processors": [
     {
-      "output": "builds/lxc-centos-7-server.box",
+      "output": "/packer/builds/lxc-centos-7-server.box",
       "type": "vagrant"
     }
   ]

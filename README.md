@@ -2,10 +2,28 @@
 
 Packages a CentOS 7 Linux Container (LXC).
 
+## Requirements
+
+- [Docker](https://www.docker.com/)
+
 ## Overview
 
 ```console
-./build
+make all
+```
+
+The box will be packaged in the `./builds` folder!
+
+### Docker Container
+
+```console
+make docker
+```
+
+### Build Linux Container
+
+```console
+make run
 ```
 
 ## Known Issues

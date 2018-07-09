@@ -1,6 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-set -oux pipefail
+#set -oux pipefail
 
-sudo apt-get install -y yum
-packer build -force -on-error=abort centos-7-server.json
+config=${1}
+
+cp /usr/lib/x86_64-linux-gnu/lxc/lxc-net /etc/init.d/
+service lxc-net start
+
+PACKER_LOG=1 packer build -force -on-error=abort /packer/${config}
