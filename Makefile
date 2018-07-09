@@ -14,4 +14,4 @@ docker: deps
 	docker build --tag packer .
 
 run:
-	docker run --volume ${PWD}:/packer --privileged -it packer centos-7-server.json
+	docker run --volume ${PWD}:/packer --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --privileged -it packer centos-7-server.json
