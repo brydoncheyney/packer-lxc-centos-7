@@ -1,3 +1,4 @@
 .vagrant
 builds
 output-lxc-centos-7-x64
+packer
