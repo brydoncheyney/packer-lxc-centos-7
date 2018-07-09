@@ -6,4 +6,3 @@ COPY packer /usr/local/bin/packer
 
 VOLUME /packer
 ENTRYPOINT ["./packer/build"]
-#ENTRYPOINT ["/usr/sbin/init"]

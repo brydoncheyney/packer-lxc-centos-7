@@ -3,7 +3,7 @@
     {
       "type": "lxc",
       "name": "lxc-centos-7-x64",
-      "config_file": "/packer/lxc/config",
+      "config_file": "/usr/share/lxc/config/centos.common.conf",
       "create_options": [
         "-f", "/packer/lxc/centos-7.conf"
       ],

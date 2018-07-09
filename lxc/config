@@ -1,0 +1,2 @@
+lxc.include = /usr/share/lxc/config/centos.common.conf
+lxc.apparmor.allow_incomplete = 1
