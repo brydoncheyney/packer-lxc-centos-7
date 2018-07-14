@@ -1,6 +1,6 @@
 # Packer LXC CentOS 7
 
-Packages a CentOS 7 Linux Container (LXC).
+Packages CentOS 7 Linux Containers (LXC).
 
 ## Requirements
 
@@ -8,11 +8,18 @@ Packages a CentOS 7 Linux Container (LXC).
 
 ## Overview
 
+The docker container will build two boxes
+
+- centos-7-server_lxc.box (~548M)
+- centos-7-server-minimal_lxc.box (~166M)
+
+The `centos-7-server_lxc.box` installs the Core and Base package groups.
+
 ```console
 make all
 ```
 
-The box will be packaged in the `./builds` folder!
+The boxes will be packaged in the `./builds` folder!
 
 ### Docker Container
 
@@ -24,6 +31,12 @@ make docker
 
 ```console
 make run
+```
+
+### Provision Linux Containers
+
+```console
+vagrant up (server|minimal)
 ```
 
 ## Known Issues
@@ -42,3 +55,14 @@ PING github.com (192.30.253.112) 56(84) bytes of data.
 
 - https://bugzilla.redhat.com/show_bug.cgi?id=1475871
 - https://review.openstack.org/#/c/125428/
+
+### centos-7-server_lxc
+
+Bringing this box up in Vagrant takes longer than the default `fetch_ip_tries`
+of 10 -
+
+```yaml
+    instance.vm.provider :lxc do |lxc|
+      lxc.fetch_ip_tries = 30
+    end
+```

@@ -3,8 +3,9 @@ all: deps docker run
 .PHONY: run clean
 
 clean:
+	sudo rm -rf builds
 	vagrant destroy -f
-	vagrant box remove builds/lxc-centos-7-server.box
+	vagrant box remove builds/lxc-centos-7-server.box || true
 
 packer:
 	curl -s https://releases.hashicorp.com/packer/1.2.4/packer_1.2.4_linux_amd64.zip | gunzip - > packer

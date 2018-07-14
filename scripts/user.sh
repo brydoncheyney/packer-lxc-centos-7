@@ -10,5 +10,7 @@ mkdir -p /home/vagrant/.ssh
 echo ${VAGRANT_KEY} > /home/vagrant/.ssh/authorized_keys
 chown -R vagrant: /home/vagrant/.ssh
 
-#echo "vagrant ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vagrant
-#chmod 0440 /etc/sudoers.d/vagrant
+# sudoers
+echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
+chmod 0440 /etc/sudoers.d/vagrant
+sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers

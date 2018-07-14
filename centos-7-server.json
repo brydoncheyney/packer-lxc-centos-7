@@ -1,8 +1,21 @@
 {
   "builders": [
     {
+      "name": "centos-7-x64",
       "type": "lxc",
-      "name": "lxc-centos-7-x64",
+      "config_file": "/usr/share/lxc/config/centos.common.conf",
+      "create_options": [
+        "-f", "/packer/lxc/centos-7.conf"
+      ],
+      "template_name": "centos",
+      "template_parameters": [
+        "-R", "7",
+        "-a", "x86_64"
+      ]
+    },
+    {
+      "name": "centos-7-minimal-x64",
+      "type": "lxc",
       "config_file": "/usr/share/lxc/config/centos.common.conf",
       "create_options": [
         "-f", "/packer/lxc/centos-7.conf"
@@ -21,11 +34,18 @@
         "/packer/scripts/base.sh",
         "/packer/scripts/user.sh"
       ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "/packer/scripts/packages.sh"
+      ],
+      "except": ["centos-7-minimal-x64"]
     }
   ],
   "post-processors": [
     {
-      "output": "/packer/builds/lxc-centos-7-server.box",
+      "output": "/packer/builds/{{.BuildName}}_{{.Provider}}.box",
       "type": "vagrant"
     }
   ]
